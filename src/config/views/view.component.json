@@ -1,0 +1,72 @@
+{
+	"settings": {
+		"bulkable": true,
+		"filterable": true,
+		"searchable": true,
+		"pageSize": 10,
+		"mainField": "id",
+		"defaultSortBy": "id",
+		"defaultSortOrder": "ASC"
+	},
+	"metadatas": {
+		"id": {
+			"edit": {},
+			"list": {
+				"label": "id",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Nodes": {
+			"edit": {
+				"label": "Nodes",
+				"description": "Select specific nodes in which you want show this block",
+				"placeholder": "",
+				"visible": true,
+				"editable": true,
+				"mainField": "Title"
+			},
+			"list": {
+				"label": "Nodes",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"NodeTypes": {
+			"edit": {
+				"label": "NodeTypes",
+				"description": "Select specific node types in which you want show this block",
+				"placeholder": "",
+				"visible": true,
+				"editable": true,
+				"mainField": "Label"
+			},
+			"list": {
+				"label": "NodeTypes",
+				"searchable": false,
+				"sortable": false
+			}
+		}
+	},
+	"layouts": {
+		"list": [
+			"id",
+			"Nodes",
+			"NodeTypes"
+		],
+		"edit": [
+			[
+				{
+					"name": "Nodes",
+					"size": 12
+				},
+				{
+					"name": "NodeTypes",
+					"size": 12
+				}
+			]
+		]
+	},
+	"uid": "dsentities.view",
+	"isComponent": true
+}

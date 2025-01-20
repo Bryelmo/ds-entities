@@ -1,0 +1,247 @@
+{
+	"settings": {
+		"bulkable": true,
+		"filterable": true,
+		"searchable": true,
+		"pageSize": 10,
+		"mainField": "Title",
+		"defaultSortBy": "Title",
+		"defaultSortOrder": "ASC"
+	},
+	"metadatas": {
+		"id": {
+			"edit": {},
+			"list": {
+				"label": "id",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"Title": {
+			"edit": {
+				"label": "Title",
+				"description": "Represent the view with a title",
+				"placeholder": "",
+				"visible": true,
+				"editable": true
+			},
+			"list": {
+				"label": "Title",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"HideTitle": {
+			"edit": {
+				"label": "HideTitle",
+				"description": "Boolean value for hide the view title",
+				"placeholder": "",
+				"visible": true,
+				"editable": true
+			},
+			"list": {
+				"label": "HideTitle",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Uid": {
+			"edit": {
+				"label": "Uid",
+				"description": "This field is self-generated",
+				"placeholder": "",
+				"visible": true,
+				"editable": false
+			},
+			"list": {
+				"label": "Uid",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"Type": {
+			"edit": {
+				"label": "Type",
+				"description": "Select a specific type for this view",
+				"placeholder": "",
+				"visible": true,
+				"editable": true,
+				"mainField": "Label"
+			},
+			"list": {
+				"label": "Type",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"Entity": {
+			"edit": {
+				"label": "Entity",
+				"description": "",
+				"placeholder": "",
+				"visible": false,
+				"editable": false
+			},
+			"list": {
+				"label": "Entity",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Header": {
+			"edit": {
+				"label": "Header",
+				"description": "Define the header content on top for this view",
+				"placeholder": "",
+				"visible": true,
+				"editable": true
+			},
+			"list": {
+				"label": "Header",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Body": {
+			"edit": {
+				"label": "Body",
+				"description": "Define the node list main content for this view",
+				"placeholder": "",
+				"visible": true,
+				"editable": true
+			},
+			"list": {
+				"label": "Body",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Footer": {
+			"edit": {
+				"label": "Footer",
+				"description": "Define the footer content on bottom for this view",
+				"placeholder": "",
+				"visible": true,
+				"editable": true
+			},
+			"list": {
+				"label": "Footer",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"createdAt": {
+			"edit": {
+				"label": "createdAt",
+				"description": "",
+				"placeholder": "",
+				"visible": false,
+				"editable": true
+			},
+			"list": {
+				"label": "createdAt",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"updatedAt": {
+			"edit": {
+				"label": "updatedAt",
+				"description": "",
+				"placeholder": "",
+				"visible": false,
+				"editable": true
+			},
+			"list": {
+				"label": "updatedAt",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"createdBy": {
+			"edit": {
+				"label": "createdBy",
+				"description": "",
+				"placeholder": "",
+				"visible": false,
+				"editable": true,
+				"mainField": "firstname"
+			},
+			"list": {
+				"label": "createdBy",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"updatedBy": {
+			"edit": {
+				"label": "updatedBy",
+				"description": "",
+				"placeholder": "",
+				"visible": false,
+				"editable": true,
+				"mainField": "firstname"
+			},
+			"list": {
+				"label": "updatedBy",
+				"searchable": true,
+				"sortable": true
+			}
+		}
+	},
+	"layouts": {
+		"list": [
+			"id",
+			"Title",
+			"HideTitle",
+			"Uid",
+			"Type",
+			"Entity"
+		],
+		"edit": [
+			[
+				{
+					"name": "Title",
+					"size": 8
+				},
+				{
+					"name": "HideTitle",
+					"size": 4
+				}
+			],
+			[
+				{
+					"name": "Header",
+					"size": 12
+				}
+			],
+			[
+				{
+					"name": "Type",
+					"size": 12
+				},
+				{
+					"name": "Body",
+					"size": 12
+				}
+			],
+			[
+				{
+					"name": "Footer",
+					"size": 12
+				}
+			],
+			[
+				{
+					"name": "Entity",
+					"size": 12
+				},
+				{
+					"name": "Uid",
+					"size": 12
+				}
+			]
+		]
+	},
+	"uid": "plugin::ds-entities.view"
+}

@@ -1,0 +1,72 @@
+{
+	"settings": {
+		"bulkable": true,
+		"filterable": true,
+		"searchable": true,
+		"pageSize": 10,
+		"mainField": "id",
+		"defaultSortBy": "id",
+		"defaultSortOrder": "ASC"
+	},
+	"metadatas": {
+		"id": {
+			"edit": {},
+			"list": {
+				"label": "id",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Body": {
+			"edit": {
+				"label": "Body",
+				"description": "Insert here your content for this view header",
+				"placeholder": "",
+				"visible": true,
+				"editable": true
+			},
+			"list": {
+				"label": "Body",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Blocks": {
+			"edit": {
+				"label": "Blocks",
+				"description": "Insert here some blocks for this view header",
+				"placeholder": "",
+				"visible": true,
+				"editable": true,
+				"mainField": "Title"
+			},
+			"list": {
+				"label": "Blocks",
+				"searchable": false,
+				"sortable": false
+			}
+		}
+	},
+	"layouts": {
+		"list": [
+			"id",
+			"Blocks"
+		],
+		"edit": [
+			[
+				{
+					"name": "Body",
+					"size": 12
+				}
+			],
+			[
+				{
+					"name": "Blocks",
+					"size": 12
+				}
+			]
+		]
+	},
+	"uid": "view.sections",
+	"isComponent": true
+}

@@ -1,0 +1,1 @@
+export const dsEntitiesPluginName = 'plugin::ds-entities';

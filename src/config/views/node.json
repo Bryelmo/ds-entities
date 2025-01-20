@@ -1,0 +1,269 @@
+{
+	"settings": {
+		"bulkable": true,
+		"filterable": true,
+		"searchable": true,
+		"pageSize": 10,
+		"mainField": "Title",
+		"defaultSortBy": "Title",
+		"defaultSortOrder": "ASC"
+	},
+	"metadatas": {
+		"id": {
+			"edit": {},
+			"list": {
+				"label": "id",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"Title": {
+			"edit": {
+				"label": "Title",
+				"description": "Represent the node with a title",
+				"placeholder": "",
+				"visible": true,
+				"editable": true
+			},
+			"list": {
+				"label": "Title",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"HideTitle": {
+			"edit": {
+				"label": "HideTitle",
+				"description": "Boolean value for hide the node title",
+				"placeholder": "",
+				"visible": true,
+				"editable": true
+			},
+			"list": {
+				"label": "HideTitle",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Slug": {
+			"edit": {
+				"label": "Slug",
+				"description": "String path representing the node. This field is self-generated.",
+				"placeholder": "",
+				"visible": true,
+				"editable": false
+			},
+			"list": {
+				"label": "Slug",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Type": {
+			"edit": {
+				"label": "Type",
+				"description": "Select a specific type for this node",
+				"placeholder": "",
+				"visible": true,
+				"editable": true,
+				"mainField": "Label"
+			},
+			"list": {
+				"label": "Type",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"Image": {
+			"edit": {
+				"label": "Image",
+				"description": "Attach a representative image for this node",
+				"placeholder": "",
+				"visible": true,
+				"editable": true
+			},
+			"list": {
+				"label": "Image",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Entity": {
+			"edit": {
+				"label": "Entity",
+				"description": "",
+				"placeholder": "",
+				"visible": false,
+				"editable": false
+			},
+			"list": {
+				"label": "Entity",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Uid": {
+			"edit": {
+				"label": "Uid",
+				"description": "This field is self-generated",
+				"placeholder": "",
+				"visible": true,
+				"editable": false
+			},
+			"list": {
+				"label": "Uid",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"Body": {
+			"edit": {
+				"label": "Body",
+				"description": "Insert here your content for this node",
+				"placeholder": "",
+				"visible": true,
+				"editable": true
+			},
+			"list": {
+				"label": "Body",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Tags": {
+			"edit": {
+				"label": "Tags",
+				"description": "Select specific tags for this node",
+				"placeholder": "",
+				"visible": true,
+				"editable": true,
+				"mainField": "Name"
+			},
+			"list": {
+				"label": "Tag",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"createdAt": {
+			"edit": {
+				"label": "createdAt",
+				"description": "",
+				"placeholder": "",
+				"visible": false,
+				"editable": true
+			},
+			"list": {
+				"label": "createdAt",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"updatedAt": {
+			"edit": {
+				"label": "updatedAt",
+				"description": "",
+				"placeholder": "",
+				"visible": false,
+				"editable": true
+			},
+			"list": {
+				"label": "updatedAt",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"createdBy": {
+			"edit": {
+				"label": "createdBy",
+				"description": "",
+				"placeholder": "",
+				"visible": false,
+				"editable": true,
+				"mainField": "firstname"
+			},
+			"list": {
+				"label": "createdBy",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"updatedBy": {
+			"edit": {
+				"label": "updatedBy",
+				"description": "",
+				"placeholder": "",
+				"visible": false,
+				"editable": true,
+				"mainField": "firstname"
+			},
+			"list": {
+				"label": "updatedBy",
+				"searchable": true,
+				"sortable": true
+			}
+		}
+	},
+	"layouts": {
+		"list": [
+			"id",
+			"Title",
+			"HideTitle",
+			"Slug",
+			"Type",
+			"Entity",
+			"Image"
+		],
+		"edit": [
+			[
+				{
+					"name": "Title",
+					"size": 8
+				},
+				{
+					"name": "HideTitle",
+					"size": 4
+				}
+			],
+			[
+				{
+					"name": "Slug",
+					"size": 12
+				}
+			],
+			[
+				{
+					"name": "Image",
+					"size": 12
+				}
+			],
+			[
+				{
+					"name": "Body",
+					"size": 12
+				}
+			],
+			[	
+				{
+					"name": "Type",
+					"size": 6
+				},
+				{
+					"name": "Tags",
+					"size": 6
+				}
+			],
+			[
+				{
+					"name": "Entity",
+					"size": 12
+				},
+				{
+					"name": "Uid",
+					"size": 12
+				}
+			]
+		]
+	},
+	"uid": "plugin::ds-entities.node"
+}
