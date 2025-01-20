@@ -32,7 +32,7 @@ The tag entity it's useful for tagging node contents and display them into the v
 ## Installation
 DS Entities requires Strapi 5 and can be installed with:
 ```sh
-npm install
+npm install ds-entities
 ```
 ## API
 DS Entities organizes all the entities in a specific layout structure that can be used for build the web page on your frontend application. That structure is available calling the following endpoint:
