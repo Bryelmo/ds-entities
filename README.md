@@ -58,6 +58,76 @@ That endpoint will return blocks data organized per regions
     "custom-region": [ ... ]
 }
 ```
+DS Entities provides all the entities organized in two other useful structures that can be used as registry fro handling translations or routing. Those structure are available calling the following endpoints:
+```sh
+http://localhost:1337/api/ds-entities/map
+```
+That endpoint will return entities data organized per Type and Uid
+```sh
+{
+    "nodes": {
+        "page": {
+            "node_page-node": {
+                ...
+                "Title": "Page Node",
+                "HideTitle": false,
+                "Slug": "page-node",
+                "Entity": "node",
+                "Uid": "node_page-node",
+                ...
+            }
+            ...
+        },
+    ],
+    "blocks": {
+        "default": {
+            "block_sample-block": {
+                ...
+                Title": "Sample block",
+                "HideTitle": true,
+                "Entity": "block",
+                "Uid": "block_sample-block",
+                ...
+            }
+            ...
+        },
+    }
+    "views": {
+        "default": {
+            "view_sample-view": {
+                ...
+                "Title": "Sample view",
+                "HideTitle": false,
+                "Uid": "view_sample-view",
+                "Entity": "view",
+                ...
+            }
+            ...
+        },
+    }
+}
+```
+```sh
+http://localhost:1337/api/ds-entities/slugs
+```
+That endpoint will return entities data organized per Slug
+```sh
+{
+    "nodes": {
+        "page-node": {
+             ...
+                "Title": "Page Node",
+                "HideTitle": false,
+                "Slug": "page-node",
+                "Entity": "node",
+                "Uid": "node_page-node",
+                ...
+            ...
+        },
+        ...
+    ]
+}
+```
 Other DS entities are available on their specific endpoints
 ```sh
 http://localhost:1337/api/ds-entities/nodes
