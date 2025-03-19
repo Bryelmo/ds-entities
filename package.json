@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "keywords": [],
+  "version": "1.0.7",
+  "keywords": ["strapi plugin", "strapi layout builder", "strapi ds entities"],
   "type": "commonjs",
   "exports": {
     "./package.json": "./package.json",

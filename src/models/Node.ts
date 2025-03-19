@@ -18,17 +18,3 @@ export type NodeFilter = {
 	values: string[],
 	type: StrapiFilterTypes
 }
-
-export enum NodeEntityProperties {
-	TITLE = 'Title',
-	HIDETITLE = 'HideTitle',
-	SLUG = 'Slug',
-	ENTITY = 'Entity',
-	UID = 'Uid',
-	TYPE = 'Type',
-	CREATEDAT = 'createdAt',
-	UPDATEDAT = 'updatedAt',
-	PUBLISHEDAT = 'publishedAt',
-	TAGS = 'Tags',
-	LOCALIZATIONS = 'localizations',
-}

@@ -31,7 +31,8 @@ export const ComponentsService = {
 			type: StrapiStoreTypes.PLUGIN,
 			name: StrapiStoreNames.CONTENT_MANAGER
 		});
-		await pluginStore?.set({ key: StrapiStoreKeyNames[component], value: viewConfigs[component] });
+		const stored_config = await pluginStore?.get({ key: StrapiStoreKeyNames[component] });
+		await pluginStore?.set({ key: StrapiStoreKeyNames[component], value: { ...viewConfigs[component], ...stored_config } });
 	}
 
 }

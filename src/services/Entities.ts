@@ -1,6 +1,9 @@
 
-import { DSEntities, DSEntityTypes, viewConfigs } from '../models/Entities';
+import { BlockEntity } from '../models/Block';
+import { DSEntities, DSEntity, DSEntityTypes, EntitiesTypeMap, EntityProperties, viewConfigs } from '../models/Entities';
+import { NodeEntity } from '../models/Node';
 import { Entity, StrapiStoreKeyNames, StrapiStoreNames, StrapiStoreTypes } from '../models/Strapi';
+import { ViewEntity } from '../models/View';
 import { LocaleService } from './Locale';
 import { NodeService } from './Node';
 
@@ -133,7 +136,8 @@ export const EntitiesService = {
 			type: StrapiStoreTypes.PLUGIN,
 			name: StrapiStoreNames.CONTENT_MANAGER
 		});
-		await pluginStore?.set({ key: StrapiStoreKeyNames[entity], value: viewConfigs[entity] });
+		const stored_config = await pluginStore?.get({ key: StrapiStoreKeyNames[entity]});
+		await pluginStore?.set({ key: StrapiStoreKeyNames[entity], value: { ...viewConfigs[entity], ...stored_config } });
 	},
 
 	/**
@@ -146,6 +150,35 @@ export const EntitiesService = {
 	getSubstringInString(string: string, start:string, end:string):string {
 		const position = string.indexOf(start) + start.length;
 		return string.substring(position, string.indexOf(end, position));
+	},
+
+	mapEntities(entities: NodeEntity[] | BlockEntity[] | ViewEntity[]): EntitiesTypeMap {
+		let map: EntitiesTypeMap = {};
+		const grouped:any = this.groupEntitiesByType(entities);
+		Object.keys(grouped)?.forEach((type:string) => {
+			map[type] = this.mapEntitiesByProperty(grouped[type], EntityProperties.UID);
+		})
+		return map;
+	},
+
+	/**
+	 *  @description I organize entities for specific types
+	 *  @param {NodeEntity[] | BlockEntity[] | ViewEntity[]} entities
+	 *  @return {EntitiesTypeMap}
+	 */
+	groupEntitiesByType(entities: NodeEntity[] | BlockEntity[] | ViewEntity[]): { [uid: string]: DSEntity[] } {
+		return [...entities]?.reduce((group, entity) => {
+			const type: string = entity.Type.Name;
+			group[type] = group[type] ?? [];
+			group[type].push(entity);
+			return { ...group, [type]: group[type] };
+		}, {});
+	},
+
+	mapEntitiesByProperty(entities: NodeEntity[] | BlockEntity[] | ViewEntity[], property: EntityProperties): { [uid: string]: DSEntity } {
+		let map:{[uid: string]: DSEntity } = {};
+		entities?.forEach((entity) => { map[entity[property]] = entity })
+		return map;
 	}
 
 }

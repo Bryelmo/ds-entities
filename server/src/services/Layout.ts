@@ -1,8 +1,7 @@
 import { BlockEntity } from "../../../src/models/Block";
 import { DSEntities } from "../../../src/models/Entities";
-import { NodeEntityProperties } from "../../../src/models/Node";
+import { EntityProperties } from "../../../src/models/Entities";
 import { BlockService } from "../../../src/services/Block";
-import { NodeService } from "../../../src/services/Node";
 import { RegionService } from "../../../src/services/Region";
 import { TagService } from "../../../src/services/Tag";
 import { EntityTypeService } from "../../../src/services/EntityType";
@@ -10,25 +9,28 @@ import { LocaleService } from "../../../src/services/Locale";
 
 const options = {
 	status: 'published',
+	fields: '*',
 	populate: {
 		Type: { fields: EntityTypeService.fields },
 		Region: { fields: RegionService.fields },
 		Context: { 
 			populate: {
-				Nodes: { fields: [ NodeEntityProperties.SLUG, NodeEntityProperties.UID ] },
+				Nodes: { fields: [EntityProperties.SLUG, EntityProperties.UID ] },
 				NodeTypes: { fields: EntityTypeService.fields }
 			}
 		},
 		Views: {
+			fields: '*',
 			populate: {
 				Type: { fields: EntityTypeService.fields },
 				Header: { populate: { Blocks: { populate: { Type: { fields: EntityTypeService.fields } } } } },
 				Body: { 
 					populate: {
 						Nodes: { 
-							fields: NodeService.fields,
+							fields: '*',
 							populate: {
 								Type: { fields: EntityTypeService.fields },
+								Image: { fields: '*' },
 								Tags: { fields: TagService.fields },
 								localizations: { fields: '*' },
 							}
