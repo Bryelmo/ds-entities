@@ -123,6 +123,22 @@ export const ViewService = {
 		delete _block.Region;
 		delete _block.locale;
 		return { ...EntitiesService.cleanNullData(_block) }
-	}
+	},
+
+	/**
+	 *  @description I clean the node object data from API from useless data
+	 *  @param {ViewEntity} view
+	 *  @return {ViewEntity}
+	 */
+	async removeUselessData(view: ViewEntity): Promise<ViewEntity> {
+		const body_view: NodeEntity[] = view.Body ? await this.getViewNodes(view.Body) : null;
+		const body_adapted: any = body_view?.map(node => ({ id: node?.id, documentId: node?.documentId,Uid: node?.Uid })) || [];
+		let _view: Partial<ViewEntity> = {
+			...view,
+			Type: EntityTypeService.removeUselessData(view.Type),
+			Body: body_adapted,
+		};
+		return { ...EntitiesService.cleanNullData(_view) }
+	},
 
 }

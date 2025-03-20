@@ -5,6 +5,7 @@ import block from './Block';
 import tag from './Tag';
 import view from './View';
 import layout from './Layout';
+import entities from './Entities';
 
 export default {
 	node,
@@ -15,6 +16,7 @@ export default {
 	block,
 	tag,
 	view,
-	layout
+	layout,
+	entities
 };
 

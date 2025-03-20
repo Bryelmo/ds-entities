@@ -1,6 +1,6 @@
 
 import { DSEntities } from "../models/Entities";
-import { NodeEntity, NodeEntityProperties, NodesQueryFilter } from "../models/Node";
+import { NodeEntity, NodesQueryFilter } from "../models/Node";
 import { TagEntity } from "../models/Tag";
 import { EntitiesService } from "./Entities";
 import { TagService } from "./Tag";
@@ -9,20 +9,9 @@ import { EntityTypeService } from "./EntityType";
 export const NodeService = {
 
 	/**
-	 *  @var fields
-	 *  @description Fields that needs to be available in API
+	 *  @var query
+	 *  @description Query filter
 	 */
-	fields: [
-		NodeEntityProperties.TITLE,
-		NodeEntityProperties.HIDETITLE,
-		NodeEntityProperties.SLUG,
-		NodeEntityProperties.ENTITY,
-		NodeEntityProperties.UID,
-		NodeEntityProperties.CREATEDAT,
-		NodeEntityProperties.UPDATEDAT,
-		NodeEntityProperties.PUBLISHEDAT
-	],
-
 	query: {
 		status: { $eq: 'published' },
 		populate: '*'
@@ -87,8 +76,6 @@ export const NodeService = {
 			}
 		}
 		return query;
-
 	}
-	
 
 }

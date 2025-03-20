@@ -1,5 +1,5 @@
 # DS Entities - Layout builder
-Build your page layout with this new Strapi plugin inspired by Drupal.
+Build your page layout with this **new Strapi plugin inspired by Drupal**.
 DS Entities gives you a chance to organize and position you contents through API to display them in your project.
 
 ## Entity types
@@ -30,16 +30,18 @@ The view content is represented by an unique machine name.
 The tag entity it's useful for tagging node contents and display them into the views.
 
 ## Installation
-DS Entities requires Strapi 5 and can be installed with:
+DS Entities requires **Strapi 5** and can be installed with:
 ```sh
 npm install ds-entities
 ```
 ## API
-DS Entities organizes all the entities in a specific layout structure that can be used for build the web page on your frontend application. That structure is available calling the following endpoint:
+DS Entities organizes all the entities in different layout structures that can be used for build the web page on your frontend application.
+### Layout
+All the entities are organized as block renderer inside each regions and can be used for create a **layout builder**. That structure is available calling the following endpoint:
 ```sh
 http://localhost:1337/api/ds-entities/layout
 ```
-That endpoint will return blocks data organized per regions
+That endpoint returns an optimized data structure like the example below:
 ```sh
 {
     "unassigned": [
@@ -58,6 +60,80 @@ That endpoint will return blocks data organized per regions
     "custom-region": [ ... ]
 }
 ```
+### Map
+DS Entities provides all the entities organized in a new other useful structure that can be used as **data source registry** for handling translations. This structure is available calling the following endpoint:
+```sh
+http://localhost:1337/api/ds-entities/map
+```
+That endpoint will return entities data organized per **Type** and **Uid**
+```sh
+{
+    "nodes": {
+        "page": {
+            "node_page-node": {
+                ...
+                "Title": "Page Node",
+                "HideTitle": false,
+                "Slug": "page-node",
+                "Entity": "node",
+                "Uid": "node_page-node",
+                ...
+            }
+            ...
+        },
+    ],
+    "blocks": {
+        "default": {
+            "block_sample-block": {
+                ...
+                Title": "Sample block",
+                "HideTitle": true,
+                "Entity": "block",
+                "Uid": "block_sample-block",
+                ...
+            }
+            ...
+        },
+    }
+    "views": {
+        "default": {
+            "view_sample-view": {
+                ...
+                "Title": "Sample view",
+                "HideTitle": false,
+                "Uid": "view_sample-view",
+                "Entity": "view",
+                ...
+            }
+            ...
+        },
+    }
+}
+```
+### Slugs
+DS Entities provides all the **node** entities organized in a new useful structure that can be used as **registry** for handling routing. This structure is available calling the following endpoint:
+```sh
+http://localhost:1337/api/ds-entities/slugs
+```
+That endpoint will return node entities data organized per **Slug**
+```sh
+{
+    "nodes": {
+        "page-node": {
+             ...
+                "Title": "Page Node",
+                "HideTitle": false,
+                "Slug": "page-node",
+                "Entity": "node",
+                "Uid": "node_page-node",
+                ...
+            ...
+        },
+        ...
+    ]
+}
+```
+### General
 Other DS entities are available on their specific endpoints
 ```sh
 http://localhost:1337/api/ds-entities/nodes
@@ -69,6 +145,15 @@ http://localhost:1337/api/ds-entities/tags
 It's possible to select layout data for each language using the locale query param:
 ```sh
 http://localhost:1337/api/ds-entities/layout?locale=en
+http://localhost:1337/api/ds-entities/map?locale=en
+http://localhost:1337/api/ds-entities/slugs?locale=en
+```
+### Extension
+It's possible to extend all the main entities with other properties and make them available into the API using the **Strapi populate syntax**:
+```sh
+http://localhost:1337/api/ds-entities/layout?populate[nodes]=NEW_PROPERTY&populate[blocks]=NEW_PROPERTY&populate[views]=NEW_PROPERTY
+http://localhost:1337/api/ds-entities/map??populate[nodes]=NEW_PROPERTY&populate[blocks]=NEW_PROPERTY&populate[views]=NEW_PROPERTY
+http://localhost:1337/api/ds-entities/slugs?populate=NEW_PROPERTY
 ```
 
 ## Permissions and RBAC
