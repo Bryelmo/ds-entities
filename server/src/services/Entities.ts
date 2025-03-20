@@ -60,15 +60,19 @@ const view_options = {
 export default ({ strapi }) => {
 	
 	const getMap = async (query) => {
-		const defaultLocale = await LocaleService.getDefaultLocale();
 		let response = undefined;
+		const defaultLocale = await LocaleService.getDefaultLocale();
+		const populate_options = EntitiesService.getMappedPopulateOptions(query);
+		const _node_options = { ...node_options, populate: { ...node_options.populate, ...populate_options.nodes } };
+		const _block_options = { ...block_options, populate: { ...block_options.populate, ...populate_options.blocks } };
+		const _view_options = { ...view_options, populate: { ...view_options.populate, ...populate_options.views } };
 
 		const filter = { 
-			nodes: { ...node_options, locale: query?.locale || defaultLocale },
-			blocks: { ...block_options, locale: query?.locale || defaultLocale },
-			views: { ...view_options, locale: query?.locale || defaultLocale },
+			nodes: { ..._node_options, locale: query?.locale || defaultLocale },
+			blocks: { ..._block_options, locale: query?.locale || defaultLocale },
+			views: { ..._view_options, locale: query?.locale || defaultLocale },
 		};
-
+		
 		const nodes = strapi.documents(DSEntities.NODE).findMany(filter.nodes)
 			.then((nodes: NodeEntity[]) => Promise.all([...nodes]?.map(async (node) => await NodeService.removeUselessData(node))))
 			.then((nodes: NodeEntity[]) => EntitiesService.mapEntities(nodes));
@@ -76,7 +80,8 @@ export default ({ strapi }) => {
 		const blocks = strapi.documents(DSEntities.BLOCK).findMany(filter.blocks)
 			.then((blocks: BlockEntity[]) => Promise.all([...blocks]?.map(async (block) => {
 				let _block = await BlockService.removeUselessData(block);
-				return { ..._block, Views: await EntitiesService.cleanNullData(block.Views) }
+				if (block.Views) { _block.Views = await EntitiesService.cleanNullData(block.Views) }
+				return { ..._block }
 			})))
 			.then((blocks: BlockEntity[]) => EntitiesService.mapEntities(blocks));
 		
@@ -90,10 +95,11 @@ export default ({ strapi }) => {
 	};
 
 	const getSlugMap = async (query) => {
-		const defaultLocale = await LocaleService.getDefaultLocale();
 		let response = undefined;
-
-		const filter = { nodes: { ...node_options, locale: query?.locale || defaultLocale } };
+		const defaultLocale = await LocaleService.getDefaultLocale();
+		const populate_options = EntitiesService.getPopulateOptions(query);
+		const options = { ...node_options, populate: { ...node_options.populate, ...populate_options } };
+		const filter = { nodes: { ...options, locale: query?.locale || defaultLocale } };	
 
 		const nodes = strapi.documents(DSEntities.NODE).findMany(filter.nodes)
 			.then((nodes: NodeEntity[]) => Promise.all([...nodes]?.map(async (node) => await NodeService.removeUselessData(node))))

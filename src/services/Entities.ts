@@ -120,7 +120,7 @@ export const EntitiesService = {
 	 */
 	cleanNullData(object: any): any {
 		let _object: any = { ...object };
-		Object.keys(object)?.forEach((property: string) => {
+		Object.keys(object || [])?.forEach((property: string) => {
 			if (object[property] === null) { delete _object[property] }
 		})
 		return { ..._object }
@@ -137,7 +137,14 @@ export const EntitiesService = {
 			name: StrapiStoreNames.CONTENT_MANAGER
 		});
 		const stored_config = await pluginStore?.get({ key: StrapiStoreKeyNames[entity]});
-		await pluginStore?.set({ key: StrapiStoreKeyNames[entity], value: { ...viewConfigs[entity], ...stored_config } });
+		const default_config = viewConfigs[entity];
+		const config = {
+			settings: { ...stored_config.settings, ...default_config.settings },
+			metadatas: { ...stored_config.metadatas, ...default_config.metadatas },
+			layouts: { ...stored_config.layouts, ...default_config.layouts },
+			uid: stored_config.uid
+		}
+		await pluginStore?.set({ key: StrapiStoreKeyNames[entity], value: config });
 	},
 
 	/**
@@ -152,6 +159,11 @@ export const EntitiesService = {
 		return string.substring(position, string.indexOf(end, position));
 	},
 
+	/**
+	 *  @description I return the map with entities
+	 *  @param {NodeEntity[] | BlockEntity[] | ViewEntity[]} entities
+	 *  @return {EntitiesTypeMap}
+	 */
 	mapEntities(entities: NodeEntity[] | BlockEntity[] | ViewEntity[]): EntitiesTypeMap {
 		let map: EntitiesTypeMap = {};
 		const grouped:any = this.groupEntitiesByType(entities);
@@ -175,10 +187,43 @@ export const EntitiesService = {
 		}, {});
 	},
 
+	/**
+	 *  @description I return the map base on a specific property
+	 *  @param {NodeEntity[] | BlockEntity[] | ViewEntity[]} entities
+	 *  @param {EntityProperties} property
+	 *  @return {{ [uid: string]: DSEntity }}
+	 */
 	mapEntitiesByProperty(entities: NodeEntity[] | BlockEntity[] | ViewEntity[], property: EntityProperties): { [uid: string]: DSEntity } {
 		let map:{[uid: string]: DSEntity } = {};
 		entities?.forEach((entity) => { map[entity[property]] = entity })
 		return map;
+	},
+
+	/**
+	 *  @description I return the populate object configuration for map endpoint
+	 *  @param {Any} query
+	 *  @return {Any}
+	 */
+	getMappedPopulateOptions(query: any): any {
+		if (!query.hasOwnProperty('populate')) { return {} };
+		let options = {};
+		Object.keys(query.populate).forEach((entity) => {
+			options[entity] = this.getPopulateOptions({ populate: query.populate[entity] });
+		})
+		return options;
+	},
+
+	/**
+	 *  @description I return the populate object configuration
+	 *  @param {Any} query
+	 *  @return {Any}
+	 */
+	getPopulateOptions(query:any): any {
+		if (!query.hasOwnProperty('populate')) { return {} }
+		let options = {};
+		const populate:string[] = typeof query.populate === 'string' ? [query.populate] : query.populate;
+		populate.forEach((field: string) => { options[field] = { fields: '*' } });
+		return options;
 	}
 
 }

@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "keywords": ["strapi plugin", "strapi layout builder", "strapi ds entities"],
+  "keywords": ["strapi", "plugin", "layout builder", "ds entities"],
   "type": "commonjs",
   "exports": {
     "./package.json": "./package.json",
@@ -73,5 +73,8 @@
     "url": "https://github.com/Bryelmo/ds-entities/issues"
   },
   "homepage": "https://github.com/Bryelmo/ds-entities#readme",
-  "author": "Gabriele Morero"
+  	"author": {
+		"name": "Gabriele Morero",
+		"url": "https://www.linkedin.com/in/gabrielemorero"
+	}
 }
