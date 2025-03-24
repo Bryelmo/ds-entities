@@ -51,7 +51,8 @@ export default ({ strapi }) => {
 		let response = undefined;
 		const defaultLocale = await LocaleService.getDefaultLocale();
 		const populate_options = EntitiesService.getMappedPopulateOptions(query);
-		
+		const filters_options = EntitiesService.getFilterOptions(query);
+
 		const _options = { 
 			...options, 
 			populate: { 
@@ -71,13 +72,16 @@ export default ({ strapi }) => {
 									populate: {
 										...options.populate.Views.populate.Body.populate.Nodes.populate,
 										...populate_options.nodes
-									}
+									},
+									filters: { ...filters_options.nodes }
 								} 
 							}
 						}
-					}
+					},
+					filters: { ...filters_options.views }
 				}
-			}
+			},
+			filters: { ...filters_options.blocks }
 		};
 
 		const filter = { ..._options, locale: query?.locale || defaultLocale };

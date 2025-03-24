@@ -224,6 +224,18 @@ export const EntitiesService = {
 		const populate:string[] = typeof query.populate === 'string' ? [query.populate] : query.populate;
 		populate.forEach((field: string) => { options[field] = { fields: '*' } });
 		return options;
+	},
+
+	/**
+	 *  @description I return the filters object configuration
+	 *  @param {Any} query
+	 *  @return {Any}
+	 */
+	getFilterOptions(query): any {
+		if (!query.hasOwnProperty('filters')) { return {} }
+		let options = {};
+		Object.keys(query.filters).forEach((entity: string) => { options[entity] = query.filters[entity] })
+		return options;
 	}
 
 }
