@@ -63,9 +63,22 @@ export default ({ strapi }) => {
 		let response = undefined;
 		const defaultLocale = await LocaleService.getDefaultLocale();
 		const populate_options = EntitiesService.getMappedPopulateOptions(query);
-		const _node_options = { ...node_options, populate: { ...node_options.populate, ...populate_options.nodes } };
-		const _block_options = { ...block_options, populate: { ...block_options.populate, ...populate_options.blocks } };
-		const _view_options = { ...view_options, populate: { ...view_options.populate, ...populate_options.views } };
+		const filters_options = EntitiesService.getFilterOptions(query);
+		const _node_options = { 
+			...node_options, 
+			populate: { ...node_options.populate, ...populate_options.nodes },
+			filters: filters_options.nodes
+		};
+		const _block_options = { 
+			...block_options,
+			populate: { ...block_options.populate, ...populate_options.blocks },
+			filters: filters_options.blocks
+		};
+		const _view_options = { 
+			...view_options,
+			populate: { ...view_options.populate, ...populate_options.views },
+			filters: filters_options.views
+		};
 
 		const filter = { 
 			nodes: { ..._node_options, locale: query?.locale || defaultLocale },
@@ -96,9 +109,15 @@ export default ({ strapi }) => {
 
 	const getSlugMap = async (query) => {
 		let response = undefined;
+		
 		const defaultLocale = await LocaleService.getDefaultLocale();
 		const populate_options = EntitiesService.getPopulateOptions(query);
-		const options = { ...node_options, populate: { ...node_options.populate, ...populate_options } };
+		const filters_options = EntitiesService.getFilterOptions(query);
+		const options = { 
+			...node_options, 
+			populate: { ...node_options.populate, ...populate_options },
+			filters: filters_options.nodes
+		};
 		const filter = { nodes: { ...options, locale: query?.locale || defaultLocale } };	
 
 		const nodes = strapi.documents(DSEntities.NODE).findMany(filter.nodes)

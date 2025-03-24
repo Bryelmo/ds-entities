@@ -148,12 +148,18 @@ http://localhost:1337/api/ds-entities/layout?locale=en
 http://localhost:1337/api/ds-entities/map?locale=en
 http://localhost:1337/api/ds-entities/slugs?locale=en
 ```
-### Extension
+### Extensions
 It's possible to extend all the main entities with other properties and make them available into the API using the **Strapi populate syntax**:
 ```sh
 http://localhost:1337/api/ds-entities/layout?populate[nodes]=NEW_PROPERTY&populate[blocks]=NEW_PROPERTY&populate[views]=NEW_PROPERTY
-http://localhost:1337/api/ds-entities/map??populate[nodes]=NEW_PROPERTY&populate[blocks]=NEW_PROPERTY&populate[views]=NEW_PROPERTY
+http://localhost:1337/api/ds-entities/map?populate[nodes]=NEW_PROPERTY&populate[blocks]=NEW_PROPERTY&populate[views]=NEW_PROPERTY
 http://localhost:1337/api/ds-entities/slugs?populate=NEW_PROPERTY
+```
+All these properties are filterable with the usual **Strapi filter syntax** like the following example:
+```sh
+http://localhost:1337/api/ds-entities/layout?filters[nodes][NEW_PROPERTY][NEW_PROPERTY_FIELD][$eq]=[NEW_PROPERTY_VALUE]&filters[blocks][NEW_PROPERTY][NEW_PROPERTY_FIELD][$eq]=[NEW_PROPERTY_VALUE]
+http://localhost:1337/api/ds-entities/map?filters[nodes][NEW_PROPERTY][NEW_PROPERTY_FIELD][$eq]=[NEW_PROPERTY_VALUE]&filters[blocks][NEW_PROPERTY][NEW_PROPERTY_FIELD][$eq]=[NEW_PROPERTY_VALUE]
+http://localhost:1337/api/ds-entities/slugs?filters[nodes][NEW_PROPERTY][NEW_PROPERTY_FIELD][$eq]=[NEW_PROPERTY_VALUE]
 ```
 
 ## Permissions and RBAC
