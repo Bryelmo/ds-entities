@@ -62,11 +62,6 @@ export default (config, { strapi }) => {
 				}
 			}
 		}
-
-		// I block the content manager pages for Region and Type entities
-		if (isRegionEntityEndpoint || isTypeEntityEndpoint) {
-			return ctx.badRequest(null, [{ messages: [{ id: 'Unauthorized' }] }])
-		}
 	
 		await next();
 	
