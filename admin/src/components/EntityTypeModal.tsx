@@ -53,7 +53,7 @@ const EntityTypeModal = ({ entity, type, edit, open, onOpenChange, onSubmit }: M
 	return (
 		<Modal.Root open={open} onOpenChange={onOpenChange}>
 			<Modal.Content>
-				<Form method="POST" onSubmit={handleSubmit} initialValues={entity}>
+				<Form method="POST" onSubmit={handleSubmit} initialValues={entity} height="auto" width="auto">
 					<Modal.Header>
 						<Modal.Title>{ edit ? editTitle : createTitle }</Modal.Title>
 					</Modal.Header>
