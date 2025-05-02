@@ -1,3 +1,4 @@
+import { Core } from '@strapi/strapi';
 import { StrapiLocale } from "../models/Strapi";
 
 export const LocaleService = {
