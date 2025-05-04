@@ -1,9 +1,7 @@
 
 import { Core, Schema } from '@strapi/strapi';
-import BlockViewComponent from '../../server/src/components/View';
-import BlockReferencesComponent from '../../server/src/components/Reference';
-import ViewSectionsComponent from '../../server/src/components/Section';
-import { ComponentReferences, ComponentsUids } from '../models/Component';
+import _ from 'lodash';
+import { ComponentReferences, ComponentsUids, DSEntitiesReferencesDefaultKeys } from '../models/Component';
 import { DSEComponentTypes, viewConfigs } from '../models/Entities';
 import { StrapiStoreKeyNames, StrapiStoreNames, StrapiStoreTypes } from '../models/Strapi';
 
@@ -56,15 +54,15 @@ export const ComponentsService = {
 			type: StrapiStoreTypes.PLUGIN,
 			name: StrapiStoreNames.CONTENT_MANAGER
 		});
-		const stored_config = await pluginStore?.get({ key: StrapiStoreKeyNames[component] });
+		const stored_config = (await pluginStore?.get({ key: StrapiStoreKeyNames[component] })) || {};
 		const default_config = viewConfigs[component];
 		const config = {
-			settings: { ...stored_config.settings, ...default_config.settings },
-			metadatas: { ...stored_config.metadatas, ...default_config.metadatas },
-			layouts: { ...stored_config.layouts, ...default_config.layouts },
-			uid: stored_config.uid
+			settings: _.merge({}, stored_config?.settings, default_config.settings),
+			metadatas: _.merge({}, stored_config?.metadatas, default_config.metadatas),
+			layouts: _.merge({}, stored_config?.layouts, default_config.layouts),
+			uid: stored_config?.uid
 		}
 		await pluginStore?.set({ key: StrapiStoreKeyNames[component], value: config });
-	}
+	},
 
 }

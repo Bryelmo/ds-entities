@@ -5,6 +5,7 @@ import { TagEntity } from "../models/Tag";
 import { EntitiesService } from "./Entities";
 import { TagService } from "./Tag";
 import { EntityTypeService } from "./EntityType";
+import { ViewBodyProperties } from "../models/View";
 
 export const NodeService = {
 
@@ -67,11 +68,12 @@ export const NodeService = {
 		let query: any = { ...this.query };
 		const entity_type_name = Object.keys(filter)[0];
 		const entity_filter = filter[entity_type_name];
+		const property: string = entity_type_name === ViewBodyProperties.TAGS ? 'Tags' : 'Type';
 		query = {
 			...query,
 			filters: {
 				[entity_filter.type]: [
-					...entity_filter.values.map((value: string) => ({ Type: { Name: { $eq: value }}}))
+					...entity_filter.values.map((value: string) => ({ [property]: { Name: { $eq: value }}}))
 				]
 			}
 		}
