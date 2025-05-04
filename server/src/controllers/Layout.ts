@@ -7,7 +7,11 @@ export default {
 			const response = await service.getLayout(ctx.query);
 			ctx.body = response;
 		} catch (err) {
-			ctx.body = err;
+			ctx.status = 500;
+			ctx.body = {
+				error: 'Internal server error',
+				message: err.message,
+			};
 		}
 	}
 };

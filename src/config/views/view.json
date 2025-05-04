@@ -196,6 +196,9 @@
 			"HideTitle",
 			"Uid",
 			"Type",
+			"Body",
+			"Header",
+			"Footer",
 			"Entity"
 		],
 		"edit": [

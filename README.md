@@ -151,9 +151,9 @@ http://localhost:1337/api/ds-entities/slugs?locale=en
 ### Extensions
 It's possible to extend all the main entities with other properties and make them available into the API using the **Strapi populate syntax**:
 ```sh
-http://localhost:1337/api/ds-entities/layout?populate[nodes]=NEW_PROPERTY&populate[blocks]=NEW_PROPERTY&populate[views]=NEW_PROPERTY
-http://localhost:1337/api/ds-entities/map?populate[nodes]=NEW_PROPERTY&populate[blocks]=NEW_PROPERTY&populate[views]=NEW_PROPERTY
-http://localhost:1337/api/ds-entities/slugs?populate=NEW_PROPERTY
+http://localhost:1337/api/ds-entities/layout?populate[nodes][populate][NEW_PROPERTY][fields]=*&populate[blocks][populate][NEW_PROPERTY][populate][NESTED_NEW_PROPERTY][fields]=*
+http://localhost:1337/api/ds-entities/map?populate[nodes][populate][NEW_PROPERTY][fields]=*&populate[blocks][populate][NEW_PROPERTY][populate][NESTED_NEW_PROPERTY][fields]=*&populate[views][populate][NEW_PROPERTY][fields]=*
+http://localhost:1337/api/ds-entities/slugs?populate[NEW_PROPERTY][populate][NESTED_NEW_PROPERTY][fields]=*
 ```
 All these properties are filterable with the usual **Strapi filter syntax** like the following example:
 ```sh
@@ -161,7 +161,6 @@ http://localhost:1337/api/ds-entities/layout?filters[nodes][NEW_PROPERTY][NEW_PR
 http://localhost:1337/api/ds-entities/map?filters[nodes][NEW_PROPERTY][NEW_PROPERTY_FIELD][$eq]=[NEW_PROPERTY_VALUE]&filters[blocks][NEW_PROPERTY][NEW_PROPERTY_FIELD][$eq]=[NEW_PROPERTY_VALUE]
 http://localhost:1337/api/ds-entities/slugs?filters[nodes][NEW_PROPERTY][NEW_PROPERTY_FIELD][$eq]=[NEW_PROPERTY_VALUE]
 ```
-
 ## Permissions and RBAC
 Every endpoints can be controlled inside the Strapi users permission plugin.
 It's also possible assign some permission rules for admin user roles and decide what kind of node type can be edited by specific admin roles. This can be done becasue DS Entities plugin create a permission condition for each node type created.

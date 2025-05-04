@@ -13,3 +13,17 @@ export const ComponentReferences = {
 	[ComponentsUids.VIEW_REFERENCES]: BlockReferencesComponent,
 	[ComponentsUids.VIEW_SECTIONS]: ViewSectionsComponent,
 }
+
+export enum DSEntitiesReferencesDefaultKeyNames {
+	ID = 'id',
+	NODES = 'Nodes',
+	NODETYPES = 'NodeTypes',
+	TAGS = 'Tags'
+}
+
+export const DSEntitiesReferencesDefaultKeys:string[] = [
+	DSEntitiesReferencesDefaultKeyNames.ID as string,
+	DSEntitiesReferencesDefaultKeyNames.NODES as string,
+	DSEntitiesReferencesDefaultKeyNames.NODETYPES as string,
+	DSEntitiesReferencesDefaultKeyNames.TAGS as string
+]

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { BlockEntity } from "../../../src/models/Block";
 import { DSEntities } from "../../../src/models/Entities";
 import { NodeEntity } from "../../../src/models/Node";
@@ -62,24 +63,23 @@ export default ({ strapi }) => {
 	const getMap = async (query) => {
 		let response = undefined;
 		const defaultLocale = await LocaleService.getDefaultLocale();
-		const populate_options = EntitiesService.getMappedPopulateOptions(query);
+		const populate_options = EntitiesService.getPopulateOptions(query);
 		const filters_options = EntitiesService.getFilterOptions(query);
 		const _node_options = { 
 			...node_options, 
-			populate: { ...node_options.populate, ...populate_options.nodes },
+			populate: _.merge({}, node_options.populate, populate_options?.nodes?.populate),
 			filters: filters_options.nodes
 		};
 		const _block_options = { 
 			...block_options,
-			populate: { ...block_options.populate, ...populate_options.blocks },
+			populate: _.merge({}, block_options.populate, populate_options?.blocks?.populate),
 			filters: filters_options.blocks
 		};
 		const _view_options = { 
 			...view_options,
-			populate: { ...view_options.populate, ...populate_options.views },
+			populate: _.merge({}, view_options.populate, populate_options?.views?.populate),
 			filters: filters_options.views
 		};
-
 		const filter = { 
 			nodes: { ..._node_options, locale: query?.locale || defaultLocale },
 			blocks: { ..._block_options, locale: query?.locale || defaultLocale },
@@ -115,9 +115,10 @@ export default ({ strapi }) => {
 		const filters_options = EntitiesService.getFilterOptions(query);
 		const options = { 
 			...node_options, 
-			populate: { ...node_options.populate, ...populate_options },
+			populate: _.merge({}, node_options.populate, populate_options),
 			filters: filters_options.nodes
 		};
+
 		const filter = { nodes: { ...options, locale: query?.locale || defaultLocale } };	
 
 		const nodes = strapi.documents(DSEntities.NODE).findMany(filter.nodes)

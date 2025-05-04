@@ -1,4 +1,5 @@
 
+import _ from 'lodash';
 import { BlockEntity } from '../models/Block';
 import { DSEntities, DSEntity, DSEntityTypes, EntitiesTypeMap, EntityProperties, viewConfigs } from '../models/Entities';
 import { NodeEntity } from '../models/Node';
@@ -136,13 +137,13 @@ export const EntitiesService = {
 			type: StrapiStoreTypes.PLUGIN,
 			name: StrapiStoreNames.CONTENT_MANAGER
 		});
-		const stored_config = await pluginStore?.get({ key: StrapiStoreKeyNames[entity]});
+		const stored_config = (await pluginStore?.get({ key: StrapiStoreKeyNames[entity] })) || {};
 		const default_config = viewConfigs[entity];
 		const config = {
-			settings: { ...stored_config.settings, ...default_config.settings },
-			metadatas: { ...stored_config.metadatas, ...default_config.metadatas },
-			layouts: { ...stored_config.layouts, ...default_config.layouts },
-			uid: stored_config.uid
+			settings: _.merge({}, stored_config?.settings, default_config.settings),
+			metadatas: _.merge({}, stored_config?.metadatas, default_config.metadatas),
+			layouts: _.merge({}, stored_config?.layouts, default_config.layouts),
+			uid: stored_config?.uid
 		}
 		await pluginStore?.set({ key: StrapiStoreKeyNames[entity], value: config });
 	},
@@ -204,26 +205,10 @@ export const EntitiesService = {
 	 *  @param {Any} query
 	 *  @return {Any}
 	 */
-	getMappedPopulateOptions(query: any): any {
+	getPopulateOptions(query: any): any {
 		if (!query.hasOwnProperty('populate')) { return {} };
-		let options = {};
-		Object.keys(query.populate).forEach((entity) => {
-			options[entity] = this.getPopulateOptions({ populate: query.populate[entity] });
-		})
-		return options;
-	},
-
-	/**
-	 *  @description I return the populate object configuration
-	 *  @param {Any} query
-	 *  @return {Any}
-	 */
-	getPopulateOptions(query:any): any {
-		if (!query.hasOwnProperty('populate')) { return {} }
-		let options = {};
-		const populate:string[] = typeof query.populate === 'string' ? [query.populate] : query.populate;
-		populate.forEach((field: string) => { options[field] = { fields: '*' } });
-		return options;
+		const populate = query.populate;
+		return populate;
 	},
 
 	/**

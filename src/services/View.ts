@@ -132,13 +132,26 @@ export const ViewService = {
 	 */
 	async removeUselessData(view: ViewEntity): Promise<ViewEntity> {
 		const body_view: NodeEntity[] = view.Body ? await this.getViewNodes(view.Body) : null;
-		const body_adapted: any = body_view?.map(node => ({ id: node?.id, documentId: node?.documentId,Uid: node?.Uid })) || [];
+		const body_adapted: any = body_view?.map(node => ({ id: node?.id, documentId: node?.documentId, Uid: node?.Uid })) || [];
 		let _view: Partial<ViewEntity> = {
 			...view,
 			Type: EntityTypeService.removeUselessData(view.Type),
-			Body: body_adapted,
+			Body: this.mountAdaptedBody(view.Body, body_adapted)
 		};
 		return { ...EntitiesService.cleanNullData(_view) }
 	},
+
+	/**
+	 *  @description I mount the view body keeping nodes and adding extended fields
+	 *  @param {Any} view_body
+	 *  @param {Any} adapted_body
+	 *  @return {Any}
+	 */
+	mountAdaptedBody(view_body:any, adapted_body:any):any {
+		let adapted = { ...view_body, Nodes: adapted_body };
+		delete adapted.id;
+		delete adapted.NodeTypes;
+		return adapted
+	}
 
 }

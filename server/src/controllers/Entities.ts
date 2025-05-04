@@ -7,7 +7,11 @@ export default {
 			const response = await service.getMap(ctx.query);
 			ctx.body = response;
 		} catch (err) {
-			ctx.body = err;
+			ctx.status = 500;
+			ctx.body = {
+				error: 'Internal server error',
+				message: err.message,
+			};
 		}
 	},
 	
@@ -18,7 +22,11 @@ export default {
 			const response = await service.getSlugMap(ctx.query);
 			ctx.body = response;
 		} catch (err) {
-			ctx.body = err;
+			ctx.status = 500;
+			ctx.body = {
+				error: 'Internal server error',
+				message: err.message,
+			};
 		}
 	},
 

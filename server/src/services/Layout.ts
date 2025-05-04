@@ -36,7 +36,8 @@ const options = {
 								localizations: { fields: '*' },
 							}
 						},
-						NodeTypes: { populate: '*' }
+						NodeTypes: { populate: '*' },
+						Tags: { populate: '*' }
 					}
 				},
 				Footer: { populate: { Blocks: { populate: { Type: { fields: EntityTypeService.fields } } } } }
@@ -50,32 +51,31 @@ export default ({ strapi }) => {
 	const getLayout = async (query) => {
 		let response = undefined;
 		const defaultLocale = await LocaleService.getDefaultLocale();
-		const populate_options = EntitiesService.getMappedPopulateOptions(query);
+		const populate_options = EntitiesService.getPopulateOptions(query);
 		const filters_options = EntitiesService.getFilterOptions(query);
-
 		const _options = { 
 			...options, 
 			populate: { 
 				...options.populate, 
-				...populate_options.blocks,
+				...populate_options?.blocks?.populate,
 				Views: { 
 					...options.populate.Views, 
 					populate: { 
 						...options.populate.Views.populate, 
-						...populate_options.views,
 						Body: {
 							...options.populate.Views.populate.Body, 
 							populate: {
 								...options.populate.Views.populate.Body.populate,
+								...populate_options?.views?.populate,
 								Nodes: {
 									...options.populate.Views.populate.Body.populate.Nodes,
 									populate: {
 										...options.populate.Views.populate.Body.populate.Nodes.populate,
-										...populate_options.nodes
+										...populate_options?.nodes?.populate
 									},
 									filters: { ...filters_options.nodes }
-								} 
-							}
+								},
+							},
 						}
 					},
 					filters: { ...filters_options.views }
@@ -85,7 +85,7 @@ export default ({ strapi }) => {
 		};
 
 		const filter = { ..._options, locale: query?.locale || defaultLocale };
-
+		
 		const blocks = strapi.documents(DSEntities.BLOCK).findMany(filter)
 						.then((blocks:BlockEntity[]) => BlockService.composeResponse(blocks)
 						.then((blocks: BlockEntity[]) => BlockService.groupBlocksByRegion(blocks)) );
