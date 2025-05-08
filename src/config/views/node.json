@@ -137,7 +137,7 @@
 				"placeholder": "",
 				"visible": true,
 				"editable": true,
-				"mainField": "Name"
+				"mainField": "Label"
 			},
 			"list": {
 				"label": "Tag",

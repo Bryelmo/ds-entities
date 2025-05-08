@@ -2,6 +2,7 @@ import { Entity } from "./Strapi";
 import nodeViewConfiguration from './../config/views/node.json';
 import blockViewConfiguration from './../config/views/block.json';
 import viewViewConfiguration from './../config/views/view.json';
+import tagViewConfiguration from './../config/views/tag.json';
 import referencesComponentViewConfiguration from './../config/views/references.component.json';
 import sectionsComponentViewConfiguration from './../config/views/sections.component.json';
 import viewComponentViewConfiguration from './../config/views/view.component.json';
@@ -51,6 +52,7 @@ export const viewConfigs = {
 	[DSEntityTypes.NODE]: nodeViewConfiguration,
 	[DSEntityTypes.BLOCK]: blockViewConfiguration,
 	[DSEntityTypes.VIEW]: viewViewConfiguration,
+	[DSEntityTypes.TAG]: tagViewConfiguration,
 	[DSEComponentTypes.REFERENCES]: referencesComponentViewConfiguration,
 	[DSEComponentTypes.SECTIONS]: sectionsComponentViewConfiguration,
 	[DSEComponentTypes.VIEW]: viewComponentViewConfiguration,
