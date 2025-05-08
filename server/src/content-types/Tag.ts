@@ -33,7 +33,6 @@ export default {
 		},
 		Name: {
 			type: 'string',
-			required: true,
 			pluginOptions: {
 				i18n: {
 					localized: true
