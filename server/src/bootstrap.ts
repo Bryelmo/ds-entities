@@ -22,6 +22,7 @@ const bootstrap = async ({ strapi }: { strapi: Core.Strapi }) => {
 	EntitiesService.initEntityViewConfiguration(DSEntityTypes.BLOCK);
 	EntitiesService.initEntityViewConfiguration(DSEntityTypes.VIEW);
 	EntitiesService.initEntityViewConfiguration(DSEntityTypes.NODE);
+	EntitiesService.initEntityViewConfiguration(DSEntityTypes.TAG);
 	strapi.log.info('Installing entity view configurations');
 
 	// I init api permissions

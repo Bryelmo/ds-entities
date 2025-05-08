@@ -15,6 +15,7 @@ const register = async ({ strapi }: { strapi: Core.Strapi }) => {
 	EntitiesService.registerFilledField(DSEntities.VIEW);
 	EntitiesService.registerFilledField(DSEntities.TYPE);
 	EntitiesService.registerFilledField(DSEntities.REGION);
+	EntitiesService.registerFilledField(DSEntities.TAG);
 	strapi.log.info('Registering DS-Entities Data field');
 	
 	strapi.server.use(middlewares.guard(null, { strapi }));

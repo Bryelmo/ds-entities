@@ -22,6 +22,15 @@ export default {
 		},
 	},
 	attributes: {
+		Label: {
+			type: 'string',
+			required: true,
+			pluginOptions: {
+				i18n: {
+					localized: true
+				}
+			},
+		},
 		Name: {
 			type: 'string',
 			required: true,
@@ -29,7 +38,7 @@ export default {
 				i18n: {
 					localized: true
 				}
-			}
-		}
+			},
+		},
 	}
 };

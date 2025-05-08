@@ -75,11 +75,13 @@ export const EntitiesService = {
 				const defaultLocale = await LocaleService.getDefaultLocale();
 				if (data.locale === defaultLocale) { data.Uid = EntitiesService.getUid(data.Entity, data.Title) }
 				if (entity === DSEntities.NODE) { data.Slug = NodeService.getSlug(data.Title) }
-				if (entity === DSEntities.TYPE || entity === DSEntities.REGION) { data.Name = NodeService.getSlug(data.Label) }
+				if (entity === DSEntities.TYPE || entity === DSEntities.REGION || entity === DSEntities.TAG) { 
+					data.Name = NodeService.getSlug(data.Label)
+				}
 			},
 			async beforeUpdate(event) {
 				const { data } = event.params;
-				if (entity === DSEntities.TYPE || entity === DSEntities.REGION) { 
+				if (entity === DSEntities.TYPE || entity === DSEntities.REGION || entity === DSEntities.TAG) { 
 					data.Name = NodeService.getSlug(data.Label)
 				}
 			},

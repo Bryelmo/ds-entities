@@ -1,0 +1,130 @@
+{
+	"settings": {
+		"bulkable": true,
+		"filterable": true,
+		"searchable": true,
+		"pageSize": 10,
+		"mainField": "Label",
+		"defaultSortBy": "Name",
+		"defaultSortOrder": "ASC"
+	},
+	"metadatas": {
+		"id": {
+			"edit": {},
+			"list": {
+				"label": "id",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"Label": {
+			"edit": {
+				"label": "Label",
+				"description": "",
+				"placeholder": "",
+				"visible": true,
+				"editable": true
+			},
+			"list": {
+				"label": "Label",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"Name": {
+			"edit": {
+				"label": "Name",
+				"description": "",
+				"placeholder": "",
+				"visible": true,
+				"editable": false
+			},
+			"list": {
+				"label": "Name",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"createdAt": {
+			"edit": {
+				"label": "createdAt",
+				"description": "",
+				"placeholder": "",
+				"visible": false,
+				"editable": true
+			},
+			"list": {
+				"label": "createdAt",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"updatedAt": {
+			"edit": {
+				"label": "updatedAt",
+				"description": "",
+				"placeholder": "",
+				"visible": false,
+				"editable": true
+			},
+			"list": {
+				"label": "updatedAt",
+				"searchable": true,
+				"sortable": true
+			}
+		},
+		"createdBy": {
+			"edit": {
+				"label": "createdBy",
+				"description": "",
+				"placeholder": "",
+				"visible": false,
+				"editable": true,
+				"mainField": "firstname"
+			},
+			"list": {
+				"label": "createdBy",
+				"searchable": true,
+				"sortable": true,
+				"mainField": "firstname"
+			}
+		},
+		"updatedBy": {
+			"edit": {
+				"label": "updatedBy",
+				"description": "",
+				"placeholder": "",
+				"visible": false,
+				"editable": true,
+				"mainField": "firstname"
+			},
+			"list": {
+				"label": "updatedBy",
+				"searchable": true,
+				"sortable": true,
+				"mainField": "firstname"
+			}
+		}
+	},
+	"layouts": {
+		"edit": [
+			[
+				{
+					"name": "Label",
+					"size": 6
+				},
+				{
+					"name": "Name",
+					"size": 6
+				}
+			]
+		],
+		"list": [
+			"id",
+			"Name",
+			"createdAt",
+			"updatedAt"
+		]
+	},
+	"uid": "plugin::ds-entities.tag"
+}
