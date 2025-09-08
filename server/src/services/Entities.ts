@@ -113,12 +113,14 @@ export default ({ strapi }) => {
 		const defaultLocale = await LocaleService.getDefaultLocale();
 		const populate_options = EntitiesService.getPopulateOptions(query);
 		const filters_options = EntitiesService.getFilterOptions(query);
+		const fields_options = EntitiesService.getFieldsOptions(query);
 		const options = { 
 			...node_options, 
 			populate: _.merge({}, node_options.populate, populate_options),
-			filters: filters_options.nodes
+			filters: filters_options.nodes,
+			fields: fields_options.nodes?.fields
 		};
-
+		
 		const filter = { nodes: { ...options, locale: query?.locale || defaultLocale } };	
 
 		const nodes = strapi.documents(DSEntities.NODE).findMany(filter.nodes)
