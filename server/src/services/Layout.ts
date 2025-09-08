@@ -53,6 +53,7 @@ export default ({ strapi }) => {
 		const defaultLocale = await LocaleService.getDefaultLocale();
 		const populate_options = EntitiesService.getPopulateOptions(query);
 		const filters_options = EntitiesService.getFilterOptions(query);
+
 		const _options = { 
 			...options, 
 			populate: { 
@@ -62,11 +63,12 @@ export default ({ strapi }) => {
 					...options.populate.Views, 
 					populate: { 
 						...options.populate.Views.populate, 
+						...populate_options?.views?.populate,
 						Body: {
 							...options.populate.Views.populate.Body, 
 							populate: {
 								...options.populate.Views.populate.Body.populate,
-								...populate_options?.views?.populate,
+								...populate_options?.views?.populate?.body?.populate,
 								Nodes: {
 									...options.populate.Views.populate.Body.populate.Nodes,
 									populate: {

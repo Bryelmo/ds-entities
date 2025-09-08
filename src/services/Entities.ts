@@ -81,6 +81,7 @@ export const EntitiesService = {
 			},
 			async beforeUpdate(event) {
 				const { data } = event.params;
+				if (entity === DSEntities.NODE) { data.Slug = NodeService.getSlug(data.Title) }
 				if (entity === DSEntities.TYPE || entity === DSEntities.REGION || entity === DSEntities.TAG) { 
 					data.Name = NodeService.getSlug(data.Label)
 				}
@@ -222,6 +223,18 @@ export const EntitiesService = {
 		if (!query.hasOwnProperty('filters')) { return {} }
 		let options = {};
 		Object.keys(query.filters).forEach((entity: string) => { options[entity] = query.filters[entity] })
+		return options;
+	},
+	
+	/**
+	 *  @description I return the filters object configuration
+	 *  @param {Any} query
+	 *  @return {Any}
+	 */
+	getFieldsOptions(query): any {
+		if (!query.hasOwnProperty('fields')) { return {} }
+		let options = {};
+		Object.keys(query.fields).forEach((entity: string) => { options[entity] = query.fields[entity] })
 		return options;
 	}
 
