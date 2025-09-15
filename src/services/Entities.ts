@@ -146,8 +146,10 @@ export const EntitiesService = {
 			settings: _.merge({}, stored_config?.settings, default_config.settings),
 			metadatas: _.merge({}, stored_config?.metadatas, default_config.metadatas),
 			layouts: _.merge({}, stored_config?.layouts, default_config.layouts),
-			uid: stored_config?.uid
+			uid: stored_config?.uid || default_config?.uid
 		}
+		config.layouts.list = _.uniq(config.layouts.list);
+		config.layouts.edit = _.uniqWith( config.layouts.edit.map(row => _.uniqBy(row, 'name')), _.isEqual );
 		await pluginStore?.set({ key: StrapiStoreKeyNames[entity], value: config });
 	},
 

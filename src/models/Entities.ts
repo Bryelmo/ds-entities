@@ -6,9 +6,9 @@ import tagViewConfiguration from './../config/views/tag.json';
 import referencesComponentViewConfiguration from './../config/views/references.component.json';
 import sectionsComponentViewConfiguration from './../config/views/sections.component.json';
 import viewComponentViewConfiguration from './../config/views/view.component.json';
-import { NodeEntity } from "./Node";
-import { BlockEntity } from "./Block";
-import { ViewEntity } from "./View";
+import viewComponentPagerConfiguration from './../config/views/pager.component.json';
+import viewComponentSorterConfiguration from './../config/views/sorter.component.json';
+import viewComponentOptionsConfiguration from './../config/views/options.component.json';
 
 export interface DSEntity extends Entity {
 	documentId: string,
@@ -45,7 +45,10 @@ export const DSEntityReferences = {
 export enum DSEComponentTypes {
 	REFERENCES = 'components_dsentities_references',
 	SECTIONS = 'components_dsentities_sections',
-	VIEW = 'components_dsentities_view'
+	VIEW = 'components_dsentities_view',
+	PAGER = 'components_dsentities_pager',
+	SORTER = 'components_dsentities_sorter',
+	OPTIONS = 'components_dsentities_options',
 }
 
 export const viewConfigs = {
@@ -56,6 +59,9 @@ export const viewConfigs = {
 	[DSEComponentTypes.REFERENCES]: referencesComponentViewConfiguration,
 	[DSEComponentTypes.SECTIONS]: sectionsComponentViewConfiguration,
 	[DSEComponentTypes.VIEW]: viewComponentViewConfiguration,
+	[DSEComponentTypes.PAGER]: viewComponentPagerConfiguration,
+	[DSEComponentTypes.SORTER]: viewComponentSorterConfiguration,
+	[DSEComponentTypes.OPTIONS]: viewComponentOptionsConfiguration
 }
 
 export enum EntityProperties {

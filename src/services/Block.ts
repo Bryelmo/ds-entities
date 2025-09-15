@@ -27,7 +27,7 @@ export const BlockService = {
 			Type: block.Type ? EntityTypeService.removeUselessData(block.Type) : null,
 			Context: block.Context ? this.getContextData(block.Context) : null,
 			Region: block.Region ? RegionService.removeUselessData(block.Region) : null,
-			Views: block.Views ? await ViewService.composeData(block.Views) : null,
+			Views: block.Views ? await ViewService.composeData(block.Views, block.Views.Options) : null,
 		};
 		return { ...EntitiesService.cleanNullData(_block) }
 	},

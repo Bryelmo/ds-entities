@@ -16,6 +16,9 @@ export const ComponentsService = {
 		strapi.components[ComponentsUids.BLOCK_VIEW] = this.getExtendedComponent(ComponentsUids.BLOCK_VIEW);
 		strapi.components[ComponentsUids.VIEW_REFERENCES] = this.getExtendedComponent(ComponentsUids.VIEW_REFERENCES);
 		strapi.components[ComponentsUids.VIEW_SECTIONS] = this.getExtendedComponent(ComponentsUids.VIEW_SECTIONS);
+		strapi.components[ComponentsUids.VIEW_PAGER] = this.getExtendedComponent(ComponentsUids.VIEW_PAGER);
+		strapi.components[ComponentsUids.VIEW_SORTER] = this.getExtendedComponent(ComponentsUids.VIEW_SORTER);
+		strapi.components[ComponentsUids.VIEW_OPTIONS] = this.getExtendedComponent(ComponentsUids.VIEW_OPTIONS);
 		return strapi
 	},
 
@@ -60,7 +63,7 @@ export const ComponentsService = {
 			settings: _.merge({}, stored_config?.settings, default_config.settings),
 			metadatas: _.merge({}, stored_config?.metadatas, default_config.metadatas),
 			layouts: _.merge({}, stored_config?.layouts, default_config.layouts),
-			uid: stored_config?.uid
+			uid: stored_config?.uid || default_config?.uid
 		}
 		await pluginStore?.set({ key: StrapiStoreKeyNames[component], value: config });
 	},

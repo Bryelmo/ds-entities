@@ -17,6 +17,9 @@ const bootstrap = async ({ strapi }: { strapi: Core.Strapi }) => {
 	ComponentsService.initComponentViewConfiguration(DSEComponentTypes.VIEW);
 	ComponentsService.initComponentViewConfiguration(DSEComponentTypes.REFERENCES);
 	ComponentsService.initComponentViewConfiguration(DSEComponentTypes.SECTIONS);
+	ComponentsService.initComponentViewConfiguration(DSEComponentTypes.PAGER);
+	ComponentsService.initComponentViewConfiguration(DSEComponentTypes.SORTER);
+	ComponentsService.initComponentViewConfiguration(DSEComponentTypes.OPTIONS);
 	strapi.log.info('Installing components view configurations');
 
 	EntitiesService.initEntityViewConfiguration(DSEntityTypes.BLOCK);
