@@ -27,6 +27,7 @@ export enum StrapiStoreKeys {
 	REFERENCES_COMPONENT_VIEW_CONFIG = 'configuration_components::dsentities.references',
 	SECTIONS_COMPONENT_VIEW_CONFIG = 'configuration_components::dsentities.sections',
 	VIEW_COMPONENT_VIEW_CONFIG = 'configuration_components::dsentities.view',
+	VIEW_COMPONENT_PAGER_CONFIG = 'configuration_components::dsentities.pager',
 }
 
 export const StrapiStoreKeyNames = {
@@ -37,6 +38,7 @@ export const StrapiStoreKeyNames = {
 	[DSEComponentTypes.REFERENCES]: StrapiStoreKeys.REFERENCES_COMPONENT_VIEW_CONFIG,
 	[DSEComponentTypes.SECTIONS]: StrapiStoreKeys.SECTIONS_COMPONENT_VIEW_CONFIG,
 	[DSEComponentTypes.VIEW]: StrapiStoreKeys.VIEW_COMPONENT_VIEW_CONFIG,
+	[DSEComponentTypes.PAGER]: StrapiStoreKeys.VIEW_COMPONENT_PAGER_CONFIG,
 }
 
 export enum StrapiPlugins {

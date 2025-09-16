@@ -130,6 +130,20 @@
 				"sortable": false
 			}
 		},
+		"Options": {
+			"edit": {
+				"label": "Options",
+				"description": "Define the view options for this view",
+				"placeholder": "",
+				"visible": true,
+				"editable": true
+			},
+			"list": {
+				"label": "Options",
+				"searchable": false,
+				"sortable": false
+			}
+		},
 		"createdAt": {
 			"edit": {
 				"label": "createdAt",
@@ -199,7 +213,8 @@
 			"Body",
 			"Header",
 			"Footer",
-			"Entity"
+			"Entity",
+			"Options"
 		],
 		"edit": [
 			[
@@ -241,6 +256,12 @@
 				},
 				{
 					"name": "Uid",
+					"size": 12
+				}
+			],
+			[
+				{
+					"name": "Options",
 					"size": 12
 				}
 			]

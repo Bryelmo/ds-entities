@@ -97,6 +97,17 @@ export default {
 			},
 			component: ComponentsUids.VIEW_REFERENCES
 		},
+		Options: {
+			type: 'component',
+			repeatable: false,
+			required: true,
+			pluginOptions: {
+				i18n: {
+					localized: false
+				}
+			},
+			component: ComponentsUids.VIEW_OPTIONS
+		},
 		Footer: {
 			type: 'component',
 			repeatable: false,

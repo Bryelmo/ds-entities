@@ -1,0 +1,72 @@
+{
+	"settings": {
+		"bulkable": true,
+		"filterable": true,
+		"searchable": true,
+		"pageSize": 10,
+		"mainField": "id",
+		"defaultSortBy": "id",
+		"defaultSortOrder": "ASC"
+	},
+	"metadatas": {
+		"id": {
+			"edit": {},
+			"list": {
+				"label": "id",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Enable": {
+			"edit": {
+				"label": "Enable",
+				"description": "Enable pagination",
+				"placeholder": "",
+				"visible": true,
+				"editable": true,
+				"mainField": "Enable"
+			},
+			"list": {
+				"label": "Enable",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"ItemsPerPage": {
+			"edit": {
+				"label": "ItemsPerPage",
+				"description": "Select how many items display in the view",
+				"placeholder": "",
+				"visible": true,
+				"editable": true,
+				"mainField": "ItemsPerPage"
+			},
+			"list": {
+				"label": "ItemsPerPage",
+				"searchable": false,
+				"sortable": false
+			}
+		}
+	},
+	"layouts": {
+		"list": [
+			"id",
+			"Enable",
+			"ItemsPerPage"
+		],
+		"edit": [
+			[
+				{
+					"name": "Enable",
+					"size": 6
+				},
+				{
+					"name": "ItemsPerPage",
+					"size": 6
+				}
+			]
+		]
+	},
+	"uid": "dsentities.pager",
+	"isComponent": true
+}

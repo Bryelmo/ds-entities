@@ -78,6 +78,9 @@ export default ({ strapi }) => {
 									filters: { ...filters_options.nodes }
 								},
 							},
+						},
+						Options: {
+							populate: '*'
 						}
 					},
 					filters: { ...filters_options.views }

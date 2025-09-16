@@ -11,6 +11,7 @@ export interface ViewEntity extends DSEntity {
 	Header?: ViewRegion,
 	Body?: ViewBody,
 	Footer?: ViewRegion,
+	Options?: ViewOptions
 }
 
 export type ViewRegion = {
@@ -24,6 +25,26 @@ export type ViewBody = {
 	Nodes?: NodeEntity[] | null,
 	NodeTypes?: TypeEntity[] | null,
 	Tags?: TagEntity[] | null
+}
+
+export type ViewOptions = {
+	id: number,
+	Pager: ViewPager,
+	Sorting?: ViewSorting,
+}
+
+export type ViewPager = {
+	id: number,
+	Enable: boolean,
+	ItemsPerPage: number,
+	NodeTypes?: string[],
+	Tags?: string[]
+}
+
+export type ViewSorting = {
+	id: number,
+	Sort: 'Asc' | 'Desc',
+	Property: string
 }
 
 export enum ViewBodyProperties {

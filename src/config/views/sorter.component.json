@@ -1,0 +1,72 @@
+{
+	"settings": {
+		"bulkable": true,
+		"filterable": true,
+		"searchable": true,
+		"pageSize": 10,
+		"mainField": "id",
+		"defaultSortBy": "id",
+		"defaultSortOrder": "ASC"
+	},
+	"metadatas": {
+		"id": {
+			"edit": {},
+			"list": {
+				"label": "id",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Sort": {
+			"edit": {
+				"label": "Sort",
+				"description": "Sort view elements",
+				"placeholder": "",
+				"visible": true,
+				"editable": true,
+				"mainField": "Sort"
+			},
+			"list": {
+				"label": "Sort",
+				"searchable": false,
+				"sortable": false
+			}
+		},
+		"Property": {
+			"edit": {
+				"label": "Property",
+				"description": "Property name you desire sort",
+				"placeholder": "",
+				"visible": true,
+				"editable": true,
+				"mainField": "Property"
+			},
+			"list": {
+				"label": "Property",
+				"searchable": false,
+				"sortable": false
+			}
+		}
+	},
+	"layouts": {
+		"list": [
+			"id",
+			"Sort",
+			"Property"
+		],
+		"edit": [
+			[
+				{
+					"name": "Sort",
+					"size": 6
+				},
+				{
+					"name": "Property",
+					"size": 6
+				}
+			]
+		]
+	},
+	"uid": "dsentities.sorter",
+	"isComponent": true
+}
