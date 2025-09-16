@@ -7,6 +7,7 @@ import { NodeService } from './Node';
 import { TypeEntity } from '../models/Type';
 import { StrapiFilterTypes } from '../models/Strapi';
 import { EntityTypeService } from './EntityType';
+import { TagEntity } from '../models/Tag';
 
 export const ViewService = {
 
@@ -23,8 +24,10 @@ export const ViewService = {
 			Type: view.Type ? EntityTypeService.removeUselessData(view.Type) : null,
 			Header: view.Header ? await this.composeViewRegionData(view.Header) : null,
 			Body: view.Body ? await this.composeViewBodyData(view.Body, options) : null,
+			Options: view.Options?.Pager?.Enable ? this.composeViewOptionsData(view.Body, view.Options) : null,
 			Footer: view.Footer ? await this.composeViewRegionData(view.Footer) : null,
 		};
+
 		delete cleaned.id;
 		delete cleaned.createdAt;
 		delete cleaned.updatedAt;
@@ -89,6 +92,25 @@ export const ViewService = {
 	},
 
 	/**
+	 *  @description I componer view options adding it node type and tag references for pagination
+	 *  @param {ViewBody} body
+	 *  @param {ViewOptions} options
+	 *  @return {ViewOptions}
+	 */
+	composeViewOptionsData(body: ViewBody, options: ViewOptions): ViewOptions {
+		let extended_options: ViewOptions = { ...options };
+		const exist_nodetypes: boolean = body?.NodeTypes && body?.NodeTypes.length > 0 || false;
+		const exist_tags: boolean = body?.Tags && body?.Tags.length > 0 || false;
+		if (exist_nodetypes) {
+			extended_options.Pager.NodeTypes = this.getViewBodyTypeEntity(body.NodeTypes);
+		}
+		if (exist_tags) {
+			extended_options.Pager.Tags = this.getViewBodyTypeEntity(body.Tags);
+		}
+		return extended_options;
+	},
+
+	/**
 	 *  @description I get the nodes attached to the view
 	 *  @param {NodeEntity[]} nodes
 	 *  @param {ViewOptions} options
@@ -115,7 +137,9 @@ export const ViewService = {
 			query.limit = options.Pager.ItemsPerPage;
 			query.start = 0; 
 		}
-		console.log('QUERYASS', query)
+		if (options?.Sorting) { 
+			query.sort = `${options.Sorting.Property}:${options.Sorting.Sort}`;
+		}
 		return await NodeService.getNodes(query)
 	},
 
@@ -124,7 +148,7 @@ export const ViewService = {
 	 *  @param {EntityType[] | nul} EntityType
 	 *  @return {string[]}
 	 */
-	getViewBodyTypeEntity(EntityType: TypeEntity[]  | null): string[] {
+	getViewBodyTypeEntity(EntityType: TypeEntity[] | TagEntity[]  | null): string[] {
 		return EntityType?.map((type: TypeEntity) => type.Name) || []
 	},
 

@@ -37,6 +37,8 @@ export type ViewPager = {
 	id: number,
 	Enable: boolean,
 	ItemsPerPage: number,
+	NodeTypes?: string[],
+	Tags?: string[]
 }
 
 export type ViewSorting = {
