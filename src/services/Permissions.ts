@@ -89,7 +89,10 @@ export const PermissionsService = {
 	 */
 	async getUserFromRequest(request: any): Promise<StrapiAdminUser> {
 		const payload: any = this.parseJWT(request.headers.authorization);
-		return await strapi.admin.services.user.findOne(payload.id);
+		return await strapi.db.query('admin::user').findOne({
+			where: { id: payload.userId },
+			populate: ['roles']
+		});
 	},
 
 	/**
