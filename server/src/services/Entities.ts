@@ -65,19 +65,41 @@ export default ({ strapi }) => {
 		const defaultLocale = await LocaleService.getDefaultLocale();
 		const populate_options = EntitiesService.getPopulateOptions(query);
 		const filters_options = EntitiesService.getFilterOptions(query);
+
+		let _node_populate_options = _.merge({}, node_options.populate, populate_options?.nodes?.populate);
+		let _block_populate_options = _.merge({}, block_options.populate, populate_options?.blocks?.populate);
+		let _view_populate_options = _.merge({}, view_options.populate, populate_options?.views?.populate);
+
+		const populateOptionsMap: Record<string, any> = {
+			nodes: _node_populate_options,
+			blocks: _block_populate_options,
+			views: _view_populate_options,
+		};
+		
+		if (query.hasOwnProperty('exclude')) {
+			const excluded_options = query['exclude'];
+			_.forEach(excluded_options, (options, entityType) => {
+				if (!populateOptionsMap[entityType]) return;
+				const excluded_properties = _.castArray(options.populate);
+				excluded_properties.forEach(property => {
+					if (property in populateOptionsMap[entityType]) delete populateOptionsMap[entityType][property];
+				});
+			});
+		}
+		
 		const _node_options = { 
 			...node_options, 
-			populate: _.merge({}, node_options.populate, populate_options?.nodes?.populate),
+			populate: populateOptionsMap.nodes,
 			filters: filters_options.nodes
 		};
 		const _block_options = { 
 			...block_options,
-			populate: _.merge({}, block_options.populate, populate_options?.blocks?.populate),
+			populate: populateOptionsMap.blocks,
 			filters: filters_options.blocks
 		};
 		const _view_options = { 
 			...view_options,
-			populate: _.merge({}, view_options.populate, populate_options?.views?.populate),
+			populate: populateOptionsMap.views,
 			filters: filters_options.views
 		};
 		const filter = { 
@@ -120,6 +142,8 @@ export default ({ strapi }) => {
 			filters: filters_options.nodes,
 			fields: fields_options.nodes?.fields
 		};
+		
+		options.populate.localizations.fields = 'Slug'
 		
 		const filter = { nodes: { ...options, locale: query?.locale || defaultLocale } };	
 
