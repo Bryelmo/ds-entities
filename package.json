@@ -1,5 +1,5 @@
 {
-  "version": "1.6.0",
+  "version": "1.6.1",
   "keywords": ["strapi", "plugin", "layout builder", "ds entities"],
   "type": "commonjs",
   "exports": {
@@ -23,6 +23,8 @@
     "dist"
   ],
   "scripts": {
+	"clean": "rm -rf dist",
+	"prebuild": "npm run clean",
     "build": "strapi-plugin build",
     "watch": "strapi-plugin watch",
     "watch:link": "strapi-plugin watch:link",
