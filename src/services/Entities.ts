@@ -75,7 +75,9 @@ export const EntitiesService = {
 				const defaultLocale = await LocaleService.getDefaultLocale();
 				const isOriginalLocale = data.locale === defaultLocale;
 				if (isOriginalLocale && !data.Uid) { data.Uid = EntitiesService.getUid(data.Entity, data.Title) }
-				if (entity === DSEntities.NODE && data.Title) { data.Slug = NodeService.getSlug(data.Title) }
+				if (entity === DSEntities.NODE) {
+					data.Slug = NodeService.getSlug(data.Slug || data.Title);
+				}
 				if (entity === DSEntities.TYPE || entity === DSEntities.REGION || entity === DSEntities.TAG) { 
 					data.Name = NodeService.getSlug(data.Label)
 				}
@@ -83,7 +85,9 @@ export const EntitiesService = {
 			async beforeUpdate(event) {
 				const { data } = event.params;
 				const defaultLocale = await LocaleService.getDefaultLocale();
-				if (entity === DSEntities.NODE && data.Title) { data.Slug = NodeService.getSlug(data.Title) }
+				if (entity === DSEntities.NODE) {
+					data.Slug = NodeService.getSlug(data.Slug || data.Title);
+				}
 				if (entity === DSEntities.TYPE || entity === DSEntities.REGION || entity === DSEntities.TAG) { 
 					data.Name = NodeService.getSlug(data.Label)
 				}

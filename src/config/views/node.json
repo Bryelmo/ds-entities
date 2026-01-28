@@ -48,10 +48,10 @@
 		"Slug": {
 			"edit": {
 				"label": "Slug",
-				"description": "String path representing the node. This field is self-generated.",
+				"description": "String path representing the node. This field is auto-generated if left blank.",
 				"placeholder": "",
 				"visible": true,
-				"editable": false
+				"editable": true
 			},
 			"list": {
 				"label": "Slug",
