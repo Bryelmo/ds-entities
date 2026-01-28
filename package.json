@@ -1,5 +1,5 @@
 {
-  "version": "1.6.1",
+  "version": "1.6.2",
   "keywords": ["strapi", "plugin", "layout builder", "ds entities"],
   "type": "commonjs",
   "exports": {
@@ -38,7 +38,7 @@
     "react-intl": "^7.0.4"
   },
   "devDependencies": {
-    "@strapi/strapi": "^5.33.0",
+    "@strapi/strapi": "^5.34.0",
     "@strapi/sdk-plugin": "^5.3.2",
     "prettier": "^3.4.2",
     "react": "^18.3.1",
@@ -47,11 +47,11 @@
     "styled-components": "^6.1.13",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
-    "@strapi/typescript-utils": "^5.33.0",
+    "@strapi/typescript-utils": "^5.34.0",
     "typescript": "^5.7.2"
   },
   "peerDependencies": {
-    "@strapi/strapi": "^5.33.0",
+    "@strapi/strapi": "^5.34.0",
     "@strapi/sdk-plugin": "^5.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

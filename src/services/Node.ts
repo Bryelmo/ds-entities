@@ -36,7 +36,7 @@ export const NodeService = {
 		let slug: string = '';
 		if (title && title.length > 0) {
 			const titleWithoutAccents: string = title?.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-			slug = titleWithoutAccents.replace(/['‘’"“”.,;:!?#@&$£+-/|^()%\[\]]/g, '');
+			slug = titleWithoutAccents.replace(/['‘’"“”.,;:!?#@&$£+/|^()%\[\]]/g, '');
 			const array: string[] = slug.toLocaleLowerCase().split(' ');
 			if (array.length > 0) { slug = array.join('-') }
 		}
