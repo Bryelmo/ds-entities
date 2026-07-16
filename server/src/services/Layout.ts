@@ -16,7 +16,7 @@ const options = {
 		Region: { fields: RegionService.fields },
 		Context: { 
 			populate: {
-				Nodes: { fields: [EntityProperties.SLUG, EntityProperties.UID ] },
+				Nodes: { fields: [ EntityProperties.SLUG, EntityProperties.UID ] },
 				NodeTypes: { fields: EntityTypeService.fields }
 			}
 		},

@@ -14,7 +14,7 @@ export const NodeService = {
 	 *  @description Query filter
 	 */
 	query: {
-		status: { $eq: 'published' },
+		status: 'published',
 		populate: '*'
 	},
 
